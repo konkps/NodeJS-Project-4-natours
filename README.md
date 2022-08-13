@@ -21,3 +21,10 @@ npm i < list packages name > --save-dev
 * eslint-plugin-import  
 * eslint-plugin-jsx-a11y 
 * eslint-plugin-react
+
+### ENV 
+**config.env file**
+```
+NODE_ENV=development
+PORT=3015
+```

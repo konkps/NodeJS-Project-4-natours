@@ -7,14 +7,17 @@ const userRouter = require('./routes/userRoutes');
 const app = express();
 
 //  MIDDLEWARES
-
-app.use(morgan('dev')); // 'tiny'
+if(process.env.NODE_ENV==='development'){
+  app.use(morgan('dev')); // 'tiny'
+}
 
 // Middleware to transform req into json
 app.use(express.json());
+// Middleware to serve static files (e.g images)
+app.use(express.static(`${__dirname}/public`));
 
 app.use((req, res, next) => {
-  console.log('Hello from middleware');
+  // console.log('Hello from middleware');
   req.requestTime = new Date().toDateString();
   next();
 });

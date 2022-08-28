@@ -7,7 +7,7 @@ const userRouter = require('./routes/userRoutes');
 const app = express();
 
 //  MIDDLEWARES
-if(process.env.NODE_ENV==='development'){
+if (process.env.NODE_ENV === 'development') {
   app.use(morgan('dev')); // 'tiny'
 }
 
@@ -35,6 +35,6 @@ app.post('/', (req, res) => {
 // app.get('/api/v1/tours/:id/:optionalParam?', getTour);
 
 app.use('/api/v1/tours', tourRouter);
-app.use('/api/v1/usersa', userRouter);
+app.use('/api/v1/users', userRouter);
 
 module.exports = app;

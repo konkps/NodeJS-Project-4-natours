@@ -44,4 +44,6 @@ PORT=3015
 DATABASE_PASSWORD= <mongo_atlas_password>
 DATABASE_USERNAME= <mongo_atlas_username>
 DATABASE= mongodb+srv://<USERNAME>:<PASSWORD>@cluster0.pmuga.mongodb.net/<collection>?retryWrites=true&w=majority
+# for local (not cloud) mongod.exe must be running
+# DATABASE_LOCAL=mongodb://localhost:27017/<collection>
 ```

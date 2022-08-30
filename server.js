@@ -20,16 +20,14 @@ mongoose
     // console.log(con.connections);
     console.log('DB connection successful!');
   });
+// .catch(err => console.log('ERROR: ', err));
 
-// const testTour = new Tour({ name: 'mongoose name', price: 297, rating: 4.7 });
-// testTour
-//   .save()
-//   .then(doc => {
-//     console.log(doc);
-//   })
-//   .catch(e => {
-//     console.log('ERROR: ', e);
-//   });
+// handles errors that are not predicted. (also asychronous promises rejected?)
+process.on('uncaughtException', err => {
+  console.log(err.name, err.message);
+  console.log('Uncaught Exception!! Shutting down');
+  process.exit(1);
+});
 
 const app = require('./app');
 
@@ -37,6 +35,14 @@ const app = require('./app');
 
 const PORT = process.env.PORT || 3015;
 // START SERVER
-app.listen(PORT, () => {
+const server = app.listen(PORT, () => {
   console.log(`App running on port ${PORT}...`);
+});
+
+process.on('unhandledRejection', err => {
+  console.log(err.name, err.message);
+  console.log('Unhandled Rejection!! Shutting down');
+  server.close(() => {
+    process.exit(1);
+  });
 });
